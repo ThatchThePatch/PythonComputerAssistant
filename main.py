@@ -17,8 +17,12 @@ icon = pystray.Icon("Test", image,menu=pystray.Menu(
 icon.run()"""
 from datetime import datetime
 import psutil
+from gtts import gTTS
+from playsound import playsound
 
 def vocal(text):
+    gTTS(text).save("audio.mp3")
+    playsound('audio.mp3')
     print(text)
     pass
 def inquire(pram, add=None):
@@ -44,4 +48,4 @@ def inquire(pram, add=None):
                 case False:
                     vocal("Device is at " + str(battery_status.percent) + " percent and has roughly " + str(round(((battery_status.secsleft/60)/60),2)) + " hours remaining")
 
-inquire("time","yes")
+inquire("device","yes")
